@@ -1,0 +1,3 @@
+RUNDIR=/srv/soft/launcher
+CONFDIR=/etc/launcher
+PRODUCTIONENV=/srv/venvs/launcher/

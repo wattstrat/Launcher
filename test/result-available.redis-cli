@@ -1,0 +1,1 @@
+LPUSH meteor_to_dispatcher '{"event": "results available", "simulation_id": "MyID" }'

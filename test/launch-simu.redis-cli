@@ -1,0 +1,2 @@
+LPUSH saas_to_dispatcher '{"event": "launch", "simulation_id": "MyID", "subscription_name": "MySubscriptionNAME" }'
+

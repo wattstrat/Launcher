@@ -1,0 +1,26 @@
+[Unit]
+Description=Launcher Server
+
+
+[Service]
+Type = simple
+WorkingDirectory=/srv/soft/launcher/
+User=launcher
+Group=launcher
+PIDFile=/run/launcher/launcher.pid
+ExecStart = /srv/soft/launcher/launcher
+ExecStop = /srv/soft/launcher/launcher-stop
+ExecReload = /bin/kill -HUP ${MAINPID}
+KillMode=process
+KillSignal = SIGINT
+TimeoutSec = 400
+Restart = on-failure
+#LimitNOFILE = 32768
+# Hardening
+PrivateTmp = yes
+#DeviceAllow = /dev/null rw
+#DeviceAllow = /dev/urandom r
+#InaccessibleDirectories = /
+
+[Install]
+WantedBy = multi-user.target

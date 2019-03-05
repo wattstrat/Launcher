@@ -1,0 +1,16 @@
+#! /bin/bash
+# Basic config
+source /etc/default/launcher
+
+DAEMON=$RUNDIR/DISPATCHER.py
+CONFIGFILE=$CONFDIR/launcher.conf
+LOGCONFFILE=$CONFDIR/logger.conf
+LOGDIR=/var/log/launcher
+PIDFILE=/var/run/launcher/launcher.pid
+
+# Source production environnement
+source $PRODUCTIONENV/bin/activate
+
+DAEMON_ARGS="--config $CONFIGFILE --logconfigfile $LOGCONFFILE --pidfile $PIDFILE d"
+cd $RUNDIR
+$DAEMON $DAEMON_ARGS 2>&1 |tee -a $LOGDIR/error.log

@@ -1,0 +1,20 @@
+#!/bin/bash
+# Basic config
+source /etc/default/launcher
+PIDFILE=/var/run/launcher/launcher.pid
+
+kill -USR2 `cat $PIDFILE`
+for i in `seq 1 30`; do
+    if ps -ef  2>/dev/null|grep -v grep 2>/dev/null|grep -qi DISPATCHER.py 2>&1 >/dev/null; then
+	echo -n '.'
+	sleep 1;
+    else
+	exit 0;
+    fi;
+done;
+if ps -ef  2>/dev/null|grep -v grep 2>/dev/null|grep -qi DISPATCHER.py 2>&1 >/dev/null; then
+   echo "Calculation in place. Waiting"
+   sleep $WAITFINISH
+   /bin/kill -INT `cat $PIDFILE` 2>&1 > /dev/null
+fi;
+exit 0
